@@ -1,0 +1,38 @@
+/* line 1, ../sass/main.scss */
+h1 {
+  text-align: center;
+}
+
+/* line 6, ../sass/main.scss */
+.list .panel {
+  margin-top: 10px;
+}
+/* line 10, ../sass/main.scss */
+.list .list-group-item {
+  position: relative;
+}
+/* line 13, ../sass/main.scss */
+.list .list-group-item a {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+/* line 22, ../sass/main.scss */
+.detail .btn-group {
+  margin-top: 10px;
+}
+/* line 25, ../sass/main.scss */
+.detail .btn-group .btn {
+  padding: 6px 30px;
+}
+
+/* line 32, ../sass/main.scss */
+[kj-money] span {
+  margin-right: 5px;
+  color: green;
+}
+/* line 36, ../sass/main.scss */
+[kj-money] span.warn {
+  color: red;
+}

@@ -1,11 +1,19 @@
-'use strict';
+(function() {
+  'use strict';
 
-/* Directives */
-
-
-angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+  angular.module('wallet.directives', []).directive('kjMoney', function() {
+    return {
+      restrict: 'EA',
+      scope: true,
+      link: function(scope, element, attrs, a) {
+        scope.$watch(attrs.kjMoney, function(number) {
+          scope.way = number < 0 ? '借帐' : '帮付';
+          scope.warn = number < 0;
+          scope.money = '¥' + Math.abs(number);
+        });
+      },
+      template: '<span ng-class="{warn:warn}">[{{way}}]</span>{{money}}'
     };
-  }]);
+  });
+
+})();

@@ -3,3 +3,6 @@ logs/*
 node_modules/
 tmp
 .DS_Store
+
+app.old/
+app/bower_components/

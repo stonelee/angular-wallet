@@ -1,0 +1,40 @@
+h1 {
+  text-align: center;
+}
+
+.list {
+  .panel {
+    margin-top: 10px;
+  }
+
+  .list-group-item {
+    position: relative;
+
+    a {
+      position: absolute;
+      top: 20px;
+      right: 10px;
+    }
+  }
+}
+
+.detail {
+  .btn-group {
+    margin-top: 10px;
+
+    .btn {
+      padding: 6px 30px;
+    }
+  }
+}
+
+[kj-money] {
+  span {
+    margin-right: 5px;
+    color: green;
+
+    &.warn {
+      color: red;
+    }
+  }
+}

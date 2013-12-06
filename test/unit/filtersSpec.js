@@ -1,19 +1,13 @@
-'use strict';
+(function() {
+  'use strict';
 
-/* jasmine specs for filters go here */
+  describe('filter', function() {
+    beforeEach(module('wallet.filters'));
 
-describe('filter', function() {
-  beforeEach(module('myApp.filters'));
-
-
-  describe('interpolate', function() {
-    beforeEach(module(function($provide) {
-      $provide.value('version', 'TEST_VER');
-    }));
-
-
-    it('should replace VERSION', inject(function(interpolateFilter) {
-      expect(interpolateFilter('before %VERSION% after')).toEqual('before TEST_VER after');
-    }));
+    describe('time', function() {
+      it('should meet the format', inject(function(timeFilter) {
+        expect(timeFilter('2013-12-06T05:55:37.947Z')).toEqual('12-06 13:55');
+      }));
+    });
   });
-});
+})();
