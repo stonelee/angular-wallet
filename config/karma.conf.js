@@ -7,6 +7,8 @@ module.exports = function(config){
       'app/lib/angular/angular-*.js',
       'test/lib/angular/angular-mocks.js',
       'app/js/**/*.js',
+      'app/bower_components/angular-local-storage/angular-local-storage.js',
+      'app/bower_components/underscore/underscore.js',
       'test/unit/**/*.js'
     ],
 

@@ -45,6 +45,10 @@
         }
         _.extend(bill, data);
         localStorageService.set(id, bill);
+
+        return _.extend(bill, {
+          id: id
+        });
       },
 
       get: function(options) {
