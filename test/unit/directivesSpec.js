@@ -1,17 +1,42 @@
-'use strict';
+(function() {
+  'use strict';
 
-describe('directives', function() {
-  beforeEach(module('wallet.directives'));
+  describe('directives', function() {
+    var $compile, $rootScope;
+    beforeEach(module('wallet.directives'));
 
-  describe('app-version', function() {
-    it('should print current version', function() {
-      //module(function($provide) {
-        //$provide.value('version', 'TEST_VER');
-      //});
-      //inject(function($compile, $rootScope) {
-        //var element = $compile('<span app-version></span>')($rootScope);
-        //expect(element.text()).toEqual('TEST_VER');
-      //});
+    beforeEach(inject(function(_$compile_, _$rootScope_) {
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+    }));
+
+    describe('kjMoney', function() {
+      it('should process positive number', function() {
+        $rootScope.totalMoney = 10;
+        var element = $compile('<span kj-money="totalMoney"></span>')($rootScope);
+
+        $rootScope.$digest();
+        expect(element.text()).toEqual('[帮付]¥10');
+        expect(element.children().hasClass('warn')).toEqual(false);
+      });
+
+      it('should process negative number', function() {
+        $rootScope.totalMoney = -10;
+        var element = $compile('<span kj-money="totalMoney"></span>')($rootScope);
+
+        $rootScope.$digest();
+        expect(element.text()).toEqual('[借帐]¥10');
+        expect(element.children().hasClass('warn')).toEqual(true);
+      });
+
+      it('should keep origin tag name', function() {
+        $rootScope.totalMoney = 10;
+        var element = $compile('<span kj-money="totalMoney"></span>')($rootScope);
+        expect(element[0].tagName.toLowerCase()).toEqual('span');
+
+        element = $compile('<p kj-money="totalMoney"></p>')($rootScope);
+        expect(element[0].tagName.toLowerCase()).toEqual('p');
+      });
     });
   });
-});
+})();
