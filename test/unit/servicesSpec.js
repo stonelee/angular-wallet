@@ -97,7 +97,6 @@
         var bill = Bill.get({
           id: b.id
         });
-        console.log(bill);
         expect(bill.money).toBe(1);
       });
 
