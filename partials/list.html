@@ -1,0 +1,39 @@
+<div class="list">
+  <form name="billForm" class="form-inline">
+    <div class="input-group" ng-class="{'has-error':billForm.$invalid}">
+      <span class="input-group-addon">
+        <label>
+          <input type="checkbox" ng-model="isBorrowed">借帐
+        </label>
+      </span>
+      <input type="number" class="form-control" placeholder="金额" ng-model="money" required>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" ng-click="addBill()" ng-disabled="billForm.$invalid">ok</button>
+      </span>
+    </div>
+  </form>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">总计:
+      <span kj-money="totalMoney"></span>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="bill in bills">
+        <p>{{bill.created | time}}</p>
+        <p kj-money="bill.money"></p>
+        <a class="btn btn-default" href="#/edit/{{bill.id}}">修改</a>
+      </li>
+    </ul>
+  </div>
+
+  <button class="btn btn-danger" ng-click="clearAll()" ng-disabled="bills.length==0">clear all!</button>
+</div>
+<script type="text/ng-template" id="modal.html">
+  <div class="modal-body">
+    <p>Do you really want to clear <strong>all</strong> the data?</p>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-danger" ng-click="ok()">OK</button>
+  </div>
+</script>

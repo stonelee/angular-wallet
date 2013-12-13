@@ -1,0 +1,25 @@
+<form name="billForm" class="detail">
+  <div class="input-group" ng-class="{'has-error':billForm.$invalid}">
+    <span class="input-group-addon">
+      <label>
+        <input type="checkbox" ng-model="isBorrowed">借帐
+      </label>
+    </span>
+    <input type="number" class="form-control" placeholder="金额" ng-model="money" required>
+  </div>
+
+  <div class="btn-group">
+    <a class="btn btn-default" href="#/">cancel</a>
+    <button class="btn btn-primary" ng-click="save()" ng-disabled="notModified() || billForm.$invalid">save</button>
+    <button class="btn btn-danger" ng-click="remove()">delete</button>
+  </div>
+</form>
+<script type="text/ng-template" id="modal.html">
+  <div class="modal-body">
+    <p>Do you really want to clear the record?</p>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-danger" ng-click="ok()">OK</button>
+  </div>
+</script>

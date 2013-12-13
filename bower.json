@@ -1,0 +1,23 @@
+{
+  "name": "wallet",
+  "version": "0.0.0",
+  "homepage": "https://github.com/stonelee/wallet",
+  "authors": [
+    "istonelee@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "bootstrap": "~3.0.2",
+    "angular-local-storage": "*",
+    "angular-bootstrap3": "*",
+    "jquery": "~2.0.3"
+  }
+}
