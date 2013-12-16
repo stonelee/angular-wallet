@@ -1,3 +1,4 @@
+/* globals describe, beforeEach, it, expect, inject*/
 (function() {
   'use strict';
 

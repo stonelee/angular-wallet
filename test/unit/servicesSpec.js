@@ -1,3 +1,4 @@
+/* globals describe, beforeEach, it, expect, runs, waitsFor, inject*/
 (function() {
   'use strict';
 
@@ -7,7 +8,7 @@
       module('wallet.services');
 
       this.addMatchers({
-        toBeDate: function(expected) {
+        toBeDate: function() {
           var d = new Date(this.actual);
           return Object.prototype.toString.call(d) == '[object Date]' && !isNaN(d.getTime());
         }
@@ -30,8 +31,6 @@
       beforeEach(inject(function(_Bill_) {
         Bill = _Bill_;
         Bill.clearAll();
-
-        jasmine.Clock.useMock();
       }));
 
 
@@ -70,24 +69,38 @@
       });
 
       it('should keep reverse order', function() {
-        setTimeout(function() {
-          Bill.save({
-            money: 1
-          });
-        }, 1000);
-        setTimeout(function() {
-          Bill.save({
-            money: 2
-          });
-        }, 2000);
-        setTimeout(function() {
-          Bill.save({
-            money: 3
-          });
-        }, 3000);
+        var index = 0;
+        runs(function() {
+          setTimeout(function() {
+            index++;
+            Bill.save({
+              money: 1
+            });
+          }, 100);
+        });
+        runs(function() {
+          setTimeout(function() {
+            index++;
+            Bill.save({
+              money: 2
+            });
+          }, 200);
+        });
+        runs(function() {
+          setTimeout(function() {
+            index++;
+            Bill.save({
+              money: 3
+            });
+          }, 300);
+        });
 
-        jasmine.Clock.tick(3001);
-        expect(_.pluck(Bill.query(), 'money')).toEqual([3, 2, 1]);
+        waitsFor(function() {
+          return index == 3;
+        });
+        runs(function() {
+          expect(_.pluck(Bill.query(), 'money')).toEqual([3, 2, 1]);
+        });
       });
 
       it('should get data', function() {
