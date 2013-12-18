@@ -6,3 +6,4 @@ tmp
 
 app.old/
 app/bower_components/
+test/e2e/chromedriver
